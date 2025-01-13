@@ -41,11 +41,10 @@
 </script>
 
 <Navbar />
-<SearchBar />
-
 {#if isShow}
 	<Event {handleClose} />
 {/if}
+<SearchBar />
 
 <Movies {moviesData} {handleLike} {openModal} {handleMovieNumber} />
 

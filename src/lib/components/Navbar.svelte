@@ -1,6 +1,6 @@
 <div class="navbars">
 	<span>Home</span>
-	<span>Movie</span>
+	<span>Movies</span>
 	<span>About</span>
 </div>
 
