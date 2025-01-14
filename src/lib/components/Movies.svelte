@@ -1,8 +1,8 @@
 <script>
 	export let moviesData;
-	export let handleLike;
+	export let movieLikeIncrease;
 	export let openModal;
-	export let handleMovieNumber;
+	export let selectedMovieNumber;
 </script>
 
 <main class="container">
@@ -19,14 +19,14 @@
 				<button
 					class="btn btn-danger"
 					on:click={() => {
-						handleLike(i);
+						movieLikeIncrease(i);
 					}}>좋아요 {movie.likeCount}</button
 				>
 				<button
 					class="btn btn-primary"
 					on:click={() => {
 						openModal();
-						handleMovieNumber(i);
+						selectedMovieNumber(i);
 					}}>상세보기</button
 				>
 			</div>

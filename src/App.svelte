@@ -9,7 +9,7 @@
 	// 반응형 선언
 	let moviesData = data;
 
-	const handleLike = (i) => {
+	const movieLikeIncrease = (i) => {
 		moviesData[i].likeCount += 1;
 	};
 
@@ -25,7 +25,7 @@
 		isModal = false;
 	};
 
-	const handleMovieNumber = (i) => {
+	const selectedMovieNumber = (i) => {
 		selectedMovie = i;
 	};
 
@@ -44,9 +44,9 @@
 {#if isShow}
 	<Event {handleClose} />
 {/if}
-<SearchBar />
+<SearchBar bind:moviesData {data} />
 
-<Movies {moviesData} {handleLike} {openModal} {handleMovieNumber} />
+<Movies bind:moviesData {movieLikeIncrease} {openModal} {selectedMovieNumber} />
 
 {#if isModal}<Modal {data} {selectedMovie} {closeModal} />{/if}
 
