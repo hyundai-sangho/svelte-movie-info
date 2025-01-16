@@ -9,8 +9,14 @@
 	// 반응형 선언
 	let moviesData = data;
 
-	const movieLikeIncrease = (i) => {
-		moviesData[i].likeCount += 1;
+	const movieLikeIncrease = (id) => {
+		// 기존 moviesData를 복사하여 수정한 후 다시 할당
+		moviesData = moviesData.map((movie) => {
+			if (movie.id === id) {
+				return { ...movie, likeCount: movie.likeCount + 1 };
+			}
+			return movie;
+		});
 	};
 
 	let isModal = false; // 모달창 변수
@@ -45,10 +51,32 @@
 	<Event {handleClose} />
 {/if}
 <SearchBar bind:moviesData {data} />
-
+<div class="container">
+	<button
+		class="btn btn-info"
+		on:click={() => {
+			moviesData = data;
+		}}>전체보기</button
+	>
+	<button
+		class="btn btn-info"
+		on:click={() => {
+			moviesData = moviesData.sort((a, b) => b.likeCount - a.likeCount);
+		}}>좋아요순</button
+	><button
+		class="btn btn-info"
+		on:click={() => {
+			window.location.reload();
+		}}>새로고침</button
+	>
+</div>
 <Movies bind:moviesData {movieLikeIncrease} {openModal} {selectedMovieNumber} />
 
 {#if isModal}<Modal {data} {selectedMovie} {closeModal} />{/if}
 
 <style>
+	.container {
+		display: flex;
+		justify-content: center;
+	}
 </style>

@@ -19,14 +19,14 @@
 				<button
 					class="btn btn-danger"
 					on:click={() => {
-						movieLikeIncrease(i);
+						movieLikeIncrease(movie.id);
 					}}>좋아요 {movie.likeCount}</button
 				>
 				<button
 					class="btn btn-primary"
 					on:click={() => {
 						openModal();
-						selectedMovieNumber(i);
+						selectedMovieNumber(movie.id);
 					}}>상세보기</button
 				>
 			</div>
