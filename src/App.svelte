@@ -6,16 +6,18 @@
 	import Event from './lib/components/Event.svelte';
 	import data from './lib/movies.js';
 
+	let eventText = 'Netflix 강렬한 운명의 드라마, 서울크리처';
+	let eventIndex = 0;
 	// 반응형 선언
 	let moviesData = data;
 
 	const movieLikeIncrease = (id) => {
-		// 기존 moviesData를 복사하여 수정한 후 다시 할당
-		moviesData = moviesData.map((movie) => {
+		// 특정 영화만 필터링하여 복사 후 likeCount를 증가시킴
+		moviesData = moviesData.filter((movie) => {
 			if (movie.id === id) {
-				return { ...movie, likeCount: movie.likeCount + 1 };
+				movie.likeCount += 1;
 			}
-			return movie;
+			return true;
 		});
 	};
 
@@ -48,7 +50,7 @@
 
 <Navbar />
 {#if isShow}
-	<Event {handleClose} />
+	<Event {handleClose} {eventText} {eventIndex} />
 {/if}
 <SearchBar bind:moviesData {data} />
 <div class="container">
