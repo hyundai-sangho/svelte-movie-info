@@ -6,8 +6,25 @@
 	import Event from './lib/components/Event.svelte';
 	import data from './lib/movies.js';
 
-	let eventText = 'Netflix 강렬한 운명의 드라마, 서울크리처';
+	import { onMount, onDestroy } from 'svelte';
+
+	let eventText = ['영화 정보 업데이트', '신규 영화 추가', '이벤트 진행중'];
 	let eventIndex = 0;
+	let timer = '';
+
+	$: {
+		clearInterval(timer);
+
+		timer = setInterval(() => {
+			eventIndex += 1;
+
+			if (eventIndex >= eventText.length) eventIndex = 0;
+		}, 1000);
+	}
+	onMount(() => {});
+
+	onDestroy(() => {});
+
 	// 반응형 선언
 	let moviesData = data;
 
@@ -21,8 +38,8 @@
 		});
 	};
 
-	let isModal = false; // 모달창 변수
-	let selectedMovie = 0; // 선택한 영화의 인덱스 변수
+	let isModal = false;
+	let selectedMovie = 0;
 	let isShow = false;
 
 	const openModal = () => {
